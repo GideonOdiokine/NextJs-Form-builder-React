@@ -57,7 +57,7 @@ function CreateFormBtn() {
       toast({
         title: "Error",
         description: "Something went wrong, please try again later",
-        variant: "destructive",
+        variant: "destructive"
       });
     }
   };
