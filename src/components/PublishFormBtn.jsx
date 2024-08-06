@@ -1,4 +1,3 @@
-import React from 'react'
 import { PublishForm } from "@/actions/form";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -18,7 +17,26 @@ import {
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 
-const PublishFormBtn = () => {
+function PublishFormBtn({ id }) {
+  const [loading, startTransition] = useTransition();
+  const router = useRouter();
+
+  async function publishForm() {
+    try {
+      await PublishForm(id);
+      toast({
+        title: "Success",
+        description: "Your form is now available to the public",
+      });
+      router.refresh();
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+      });
+    }
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -43,13 +61,13 @@ const PublishFormBtn = () => {
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
-            // disabled={loading}
+            disabled={loading}
             onClick={(e) => {
               e.preventDefault();
-            //   startTransition(publishForm);
+              startTransition(publishForm);
             }}
           >
-            Proceed { <FaSpinner className="animate-spin" />}
+            Proceed {loading && <FaSpinner className="animate-spin" />}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -57,4 +75,4 @@ const PublishFormBtn = () => {
   );
 }
 
-export default PublishFormBtn
+export default PublishFormBtn;
