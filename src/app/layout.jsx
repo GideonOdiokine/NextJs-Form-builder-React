@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 // import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import DesignerContextProvider from '@/components/context/DesignerContext';
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          {/* <NextTopLoader /> */}
+          <NextTopLoader />
           <DesignerContextProvider>
             <ThemeProvider
               attribute="class"
