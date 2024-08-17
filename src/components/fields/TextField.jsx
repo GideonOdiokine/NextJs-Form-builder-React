@@ -18,7 +18,7 @@ import {
   Form,
 } from "../ui/form";
 import { Switch } from "../ui/switch";
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 const propertiesSchema = z.object({
   label: z.string().min(2).max(50),
@@ -184,7 +184,12 @@ function PropertiesComponent({ elementInstance }) {
   );
 }
 
-function FormComponent({elementInstance, submitValue, isInvalid, defaultValue}) {
+function FormComponent({
+  elementInstance,
+  submitValue,
+  isInvalid,
+  defaultValue,
+}) {
   const element = elementInstance;
 
   const [value, setValue] = useState(defaultValue || "");

@@ -4,7 +4,6 @@ import React from 'react'
 
 const BuilderPage = async ({params}) => {
     const {id} = params;
-    // console.log(id);
     const form = await GetFormById(Number(id));
 
     if(!form) {
