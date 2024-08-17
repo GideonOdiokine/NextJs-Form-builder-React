@@ -16,6 +16,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatDistance } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 
 
 const FormDetailPage = async ({ params }) => {
@@ -98,10 +100,12 @@ export default FormDetailPage;
 
 async function SubmissionsTable({ id }) {
   const form = await GetFormWithSubmissions(id);
+  console.log(form);
 
   if (!form) {
     throw new Error("form not found");
   }
+
 
   const formElements = JSON.parse(form.content)
   const columns = [];
@@ -125,6 +129,7 @@ async function SubmissionsTable({ id }) {
         break;
     }
   });
+
 
   const rows = [];
   form.FormSubmissions.forEach((submission) => {
